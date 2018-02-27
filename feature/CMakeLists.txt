@@ -1,0 +1,17 @@
+cmake_minimum_required (VERSION 2.6)
+
+cmake_policy(SET CMP0012 NEW)
+set( CMAKE_BUILD_TYPE "Release" )
+set( CMAKE_CXX_FLAGS "-std=c++11 -O3" )
+
+PROJECT(feature)
+
+# Requires OpenCV
+FIND_PACKAGE( OpenCV 3.0.0 REQUIRED )
+MESSAGE("OpenCV version : ${OpenCV_VERSION}")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+link_directories(${OpenCV_LIB_DIR})
+
+ADD_EXECUTABLE( ${PROJECT_NAME} feature_extraction.cpp)
+TARGET_LINK_LIBRARIES( ${PROJECT_NAME} ${OpenCV_LIBS} )
